@@ -120,7 +120,7 @@ export default class Experience
 
     setLoadingBar()
     {
-        this.loadingBar = new LoadingBar();
+        // this.loadingBar = new LoadingBar();
     }
 
     setText()

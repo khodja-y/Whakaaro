@@ -9,7 +9,7 @@ export default class Texte
 
     update()
     {
-        this.spanWidth = $('#text span').width();
-        $('#text').animate( { width: this.spanWidth }, 10000 );
+        // this.spanWidth = $('#text span').width();
+        // $('#text').animate( { width: this.spanWidth }, 10000 );
     }
 }
