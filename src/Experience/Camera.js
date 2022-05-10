@@ -1,4 +1,7 @@
 import * as THREE from 'three'
+import GUI from 'lil-gui'
+
+
 import Experience from './Experience.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -7,19 +10,29 @@ export default class Camera
     constructor(_options)
     {
         // Options
-        this.experience = new Experience()
-        this.config = this.experience.config
-        this.debug = this.experience.debug
-        this.time = this.experience.time
-        this.sizes = this.experience.sizes
-        this.targetElement = this.experience.targetElement
-        this.scene = this.experience.scene
+        this.experience = new Experience();
+        this.config = this.experience.config;
+        this.debug = this.experience.debug;
+        this.time = this.experience.time;
+        this.sizes = this.experience.sizes;
+        this.targetElement = this.experience.targetElement;
+        this.scene = this.experience.scene;
+
+        this.debug = this.experience.debug;
+        if(this.debug)
+        {
+            this.debugFolder = this.debug.addFolder(this.constructor.name);
+            this.debugFolder.close();
+        }
+
 
         // Set up
         this.mode = 'debug' // defaultCamera \ debugCamera
 
         this.setInstance()
         this.setModes()
+
+        
     }
 
     setInstance()
@@ -44,7 +57,7 @@ export default class Camera
         this.modes.debug = {}
         this.modes.debug.instance = this.instance.clone()
         this.modes.debug.instance.rotation.reorder('YXZ')
-        this.modes.debug.instance.position.set(5, 5, 5)
+        this.modes.debug.instance.position.set(5, 5, 10)
         
         this.modes.debug.orbitControls = new OrbitControls(this.modes.debug.instance, this.targetElement)
         this.modes.debug.orbitControls.enabled = this.modes.debug.active
@@ -53,6 +66,31 @@ export default class Camera
         this.modes.debug.orbitControls.zoomSpeed = 0.25
         this.modes.debug.orbitControls.enableDamping = true
         this.modes.debug.orbitControls.update()
+
+        if(this.debug)
+        {
+            this.debugFolder
+                .add(this.modes.debug.instance.position, 'x')
+                .name('PositionCameraX')
+                .min(-100)
+                .max(100)
+                .step(0.001)
+
+            this.debugFolder
+                .add(this.modes.debug.instance.position, 'y')
+                .name('PositionCameraY')
+                .min(-100)
+                .max(100)
+                .step(0.001)
+
+            this.debugFolder
+                .add(this.modes.debug.instance.position, 'z')
+                .name('PositionCameraZ')
+                .min(-100)
+                .max(100)
+                .step(0.001)
+
+        }
     }
 
 

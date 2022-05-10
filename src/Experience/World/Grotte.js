@@ -79,7 +79,6 @@ export default class Grotte
     {
 
         this.model = this.resource.model.scene;
-        
         this.scene.add(this.model);
 
     

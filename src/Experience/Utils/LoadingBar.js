@@ -54,7 +54,7 @@ export default class LoadingBar
             window.setTimeout(() =>
             {
                 this.scene.remove(this.scene.getObjectByName(this.overlay.name));
-                console.log(this.scene);
+                
                 this.overlayGeometry.dispose();
                 this.overlayMaterial.dispose();
             }, 500)

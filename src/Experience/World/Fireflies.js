@@ -72,7 +72,7 @@ export default class Fireflies
             depthWrite: false,
             uniforms: 
             {
-                uSize: {value: 20.0},
+                uSize: {value: 50.0},
                 uPixelRatio: {value: Math.min(window.devicePixelRatio, 2)},
                 uEmissive: {value: 2.0},
                 uTime: {value: 0.0},
@@ -93,7 +93,7 @@ export default class Fireflies
             this.debugFolder
                 .add(this.particles.firefliesShader.uniforms.uSize, 'value')
                 .min(0.001)
-                .max(50.0)
+                .max(100.0)
                 .step(0.001)
                 .name('FireFliesSize')
         
@@ -121,7 +121,6 @@ export default class Fireflies
         )
         
         this.scene.add(this.particles.firefliesParticles);
-        console.log(this.scene);
     }
 
     update()

@@ -10,6 +10,7 @@ import Renderer from './Renderer.js'
 import Camera from './Camera.js'
 import World from './World/World.js'
 import LoadingBar from './Utils/LoadingBar.js'
+import Texte from './Texte/Texte.js'
 
 import assets from './assets.js'
 
@@ -46,6 +47,7 @@ export default class Experience
         this.setResources()
 
         this.setLoadingBar();
+        this.setText();
 
         this.setWorld()
         
@@ -121,6 +123,11 @@ export default class Experience
         this.loadingBar = new LoadingBar();
     }
 
+    setText()
+    {
+        this.text = new Texte();
+    }
+
     update()
     {
         if(this.stats)
@@ -134,10 +141,11 @@ export default class Experience
         if(this.renderer)
             this.renderer.update()
 
+        
+
         window.requestAnimationFrame(() =>
         {
             this.update()
-            // console.log(this.scene);
         })
     }
 
@@ -158,6 +166,9 @@ export default class Experience
 
         if(this.world)
             this.world.resize()
+
+        if(this.text)
+            this.text.update();
     }
 
     destroy()

@@ -19,7 +19,7 @@ export default class Renderer
         // Debug
         if(this.debug)
         {
-            this.debugFolder = this.debug.addFolder('renderer')
+            this.debugFolder = this.debug.addFolder(this.constructor.name)
             this.debugFolder.close();
         }
         
